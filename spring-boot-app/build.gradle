@@ -50,6 +50,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE")
     compile("com.github.rjeschke:txtmark:0.13")
     compile("com.netflix.hystrix:hystrix-javanica:1.4.7")
+    compile("com.netflix.hystrix:hystrix-metrics-event-stream:1.4.7")
     compile("com.squareup.retrofit:retrofit:1.9.0")
 }
 	
