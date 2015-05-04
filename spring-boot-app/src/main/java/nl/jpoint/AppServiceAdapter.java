@@ -18,7 +18,6 @@ public class AppServiceAdapter {
     public String execute(String value) {
         try {
             RestAdapter restAdapter = new RestAdapter.Builder()
-                    .setLogLevel(RestAdapter.LogLevel.FULL)
                     .setEndpoint("http://localhost:8090")
                     .build();
             RestService restService = restAdapter.create(RestService.class);
