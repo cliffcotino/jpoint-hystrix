@@ -1,0 +1,8 @@
+rootProject.name = 'jpoint-hystrix-parent'
+include ':jhipster'
+//include ':testing'
+
+/*
+project(':jhipster').projectDir = "$rootDir/jhipster" as File
+*/
+//project(':testing').projectDir = "$rootDir/testing" as File
