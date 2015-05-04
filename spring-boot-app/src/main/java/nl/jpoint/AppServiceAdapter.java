@@ -15,7 +15,7 @@ public class AppServiceAdapter {
     private static final Logger LOGGER = LoggerFactory.getLogger(AppServiceAdapter.class);
 
     @HystrixCommand(fallbackMethod = "defaultResponse")
-    public String execute() {
+    public String execute(String value) {
         try {
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setLogLevel(RestAdapter.LogLevel.FULL)
@@ -23,7 +23,7 @@ public class AppServiceAdapter {
                     .build();
             RestService restService = restAdapter.create(RestService.class);
 
-            Markdown markdown = restService.markdown("Hallo wereld!");
+            Markdown markdown = restService.markdown(value);
             return markdown.getContent();
         } catch (Exception e) {
             LOGGER.warn("Failed to markdown", e);
@@ -31,7 +31,7 @@ public class AppServiceAdapter {
         }
     }
 
-    protected String defaultResponse() {
+    protected String defaultResponse(String value) {
         return "fallbackResponse";
     }
 }
