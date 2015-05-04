@@ -2,3 +2,6 @@ build
 *.iml
 *.iws
 bower_components
+out
+gatling
+hystrix

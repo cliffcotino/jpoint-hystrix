@@ -1,6 +1,7 @@
 package nl.jpoint;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,25 +20,26 @@ public class Controller {
 
     private int maxTimeout = 1000;
     private Random random = new Random();
+    private final AtomicInteger atomicInteger = new AtomicInteger();
 
     @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    String sayHello(@RequestParam(value = "value", defaultValue = "N/A") String value) {
+    JsonResponse sayHello(@RequestParam(value = "value", defaultValue = "N/A") String value) {
         try {
             int sleepTime = random.nextInt(maxTimeout);
             Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
             System.out.println("Interrupted: " + e);
         }
-        return String.format("{ response: \"%s\" }", Processor.process(value));
+        return new JsonResponse(atomicInteger.get(), Processor.process(value));
     }
 
     @RequestMapping(value = "/timeout", produces = MediaType.APPLICATION_JSON_VALUE)
-    String setTimeout(@RequestParam(value = "value", required = false) Integer timeout) {
+    JsonResponse setTimeout(@RequestParam(value = "value", required = false) Integer timeout) {
         if (timeout == null) {
-            return "Timeout is: " + maxTimeout;
+            return new JsonResponse(atomicInteger.get(), "Timeout is: " + maxTimeout);
         } else {
             maxTimeout = timeout;
-            return String.format("{ response: \"Timeout set to %s\" }", maxTimeout);
+            return new JsonResponse(atomicInteger.incrementAndGet(), "Timeout set to " + maxTimeout);
         }
     }
 
