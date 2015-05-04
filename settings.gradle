@@ -1,11 +1,9 @@
 rootProject.name = 'jpoint-hystrix-parent'
-include ':jhipster'
 include ':spring-boot'
 include ':spring-boot-app'
 include ':testing'
 
 /*
-project(':jhipster').projectDir = "$rootDir/jhipster" as File
 project(':testing').projectDir = "$rootDir/testing" as File
 project(':spring-boot').projectDir = "$rootDir/spring-boot" as File
 project(':spring-boot-app').projectDir = "$rootDir/spring-boot-app" as File

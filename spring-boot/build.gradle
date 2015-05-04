@@ -54,3 +54,7 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+task svcRun(dependsOn:'compileJava', type: JavaExec) {
+    bootRun
+}

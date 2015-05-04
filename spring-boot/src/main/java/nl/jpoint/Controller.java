@@ -18,11 +18,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Controller {
 
     private int maxTimeout = 1000;
+    private boolean toggle = true;
     private Random random = new Random();
     private final AtomicInteger atomicInteger = new AtomicInteger();
 
     @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    JsonResponse sayHello(@RequestParam(value = "value", defaultValue = "N/A") String value) {
+    public JsonResponse sayHello(@RequestParam(value = "value", defaultValue = "N/A") String value) {
         try {
             int sleepTime = random.nextInt(maxTimeout);
             Thread.sleep(sleepTime);
@@ -33,13 +34,19 @@ public class Controller {
     }
 
     @RequestMapping(value = "/timeout", produces = MediaType.APPLICATION_JSON_VALUE)
-    JsonResponse setTimeout(@RequestParam(value = "value", required = false) Integer timeout) {
+    public JsonResponse setTimeout(@RequestParam(value = "value", required = false) Integer timeout) {
         if (timeout == null) {
             return new JsonResponse(atomicInteger.get(), "Timeout is: " + maxTimeout);
         } else {
             maxTimeout = timeout;
             return new JsonResponse(atomicInteger.incrementAndGet(), "Timeout set to " + maxTimeout);
         }
+    }
+
+    @RequestMapping(value = "/toggle", produces = MediaType.APPLICATION_JSON_VALUE)
+    public JsonResponse setToggle() {
+        toggle = !toggle;
+        return new JsonResponse(atomicInteger.incrementAndGet(), "Toggle set to " + toggle);
     }
 
 }

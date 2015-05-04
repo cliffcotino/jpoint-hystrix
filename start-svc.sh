@@ -1,0 +1,1 @@
+java -jar spring-boot/build/libs/spring-boot-0.1-SNAPSHOT.jar
