@@ -48,6 +48,7 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE")
+    compile("com.github.rjeschke:txtmark:0.13")
 }
 	
 task wrapper(type: Wrapper) {
