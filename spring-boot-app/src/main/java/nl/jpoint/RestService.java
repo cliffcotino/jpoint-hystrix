@@ -1,6 +1,7 @@
 package nl.jpoint;
 
 import retrofit.http.GET;
+import retrofit.http.Query;
 
 /**
  *
@@ -8,5 +9,5 @@ import retrofit.http.GET;
 public interface RestService {
 
     @GET("/")
-    String timeout();
+    Markdown markdown(@Query("value") String value);
 }
