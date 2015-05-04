@@ -1,7 +1,0 @@
-ext {
-	springVersion = '4.1.4.RELEASE'
-	
-	libs = [
-		junit: 						'junit:junit:4.11'
-	]
-}

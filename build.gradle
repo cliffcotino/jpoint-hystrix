@@ -14,8 +14,6 @@ subprojects {
   sourceCompatibility = JavaVersion.VERSION_1_8
   targetCompatibility = JavaVersion.VERSION_1_8
   
-  apply from: "${rootDir}/dependencies.gradle"
-
   repositories {
      mavenLocal()
      mavenCentral()
